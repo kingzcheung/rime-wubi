@@ -26,12 +26,9 @@ patch:
       border_color: 0xffffff                    # 边框颜色
       back_color: 0xF4F4F6                      # 背景颜色 - 面板
       corner_radius: 5                          # 候选框圆角大小
-      label_color: 0xaaaaaa                     # 颜色 - 候选序号
 #      font_face: PingFang SC Semibold                    # 字体 - 候选文字
-      font_point: 18                            # 字体大小 - 候选
 #      label_font_face: Skia                     # 字体 - 候选数字
 #      label_font_point: 18                      # 字体大小 - 候选序号
-      corner_radius: 5                          # 候选框圆角大小
 
 
       # %c 是候选序号 %@ 是候选词

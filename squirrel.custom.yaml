@@ -36,6 +36,9 @@ patch:
       # %c 是候选序号 %@ 是候选词
       candidate_format: "%c %@ "               # 候选词格式，后面多个空格是为了增加候选词之间的距离
 
+      candidate_list_layout: linear
+      text_orientation: horizontal
+      
       horizontal: true                         # 是否横向 true 或 false
       line_spacing: 5                          # horizontal 为 false 时，上下候选的间隔大小
       base_offset: 0                           # 文字基线调整

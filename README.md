@@ -104,6 +104,13 @@ sudo apt-get install ibus-rime
 
 ubuntu 的配置文件目录在 `~/.config/ibus/rime/`
 
+### 4. [小企鹅输入法](https://github.com/fcitx5-android/fcitx5-android) (Android)
+插件： 需要到这个页面下载 rime 支持插件： [https://github.com/fcitx5-android/fcitx5-android/releases](https://github.com/fcitx5-android/fcitx5-android/releases)
+配置方法：
+1. 使用 adb 把文件 push 到`/sdcard/Android/data/org.fcitx.fcitx5.android/files/data/rime`
+2. 打开输入法输入界面的工具菜单 -> 重载配置
+
+
 ## 五、使用说明
 
 ### 1. 选项菜单

@@ -13,6 +13,9 @@ schema:
     - pinyin_simp
 
 switches:
+  - name: ascii_mode
+    reset: 0
+    states: [ 中文, 英文 ]
   - name: zh_trad
     reset: 1    # 初始状态为 0: 简 -> 繁 1: 繁 -> 简
     states: [ 简体, 繁体 ]
@@ -107,6 +110,9 @@ punctuator:
 
 key_binder:
   import_preset: default
+  bindings:
+    - { accept: Shift_L, toggle: ascii_mode, when: always }
+    - { accept: Shift_R, toggle: ascii_mode, when: always }
 
 recognizer:
   import_preset: default

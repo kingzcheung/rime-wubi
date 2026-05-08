@@ -13,6 +13,9 @@ schema:
     - pinyin_simp
 
 switches:
+  - name: ascii_mode
+    reset: 0
+    states: [ 中文, 英文 ]
   - name: full_shape
     states: [ 半角, 全角 ]
   - name: extended_charset
@@ -77,6 +80,9 @@ punctuator:
 
 key_binder:
   import_preset: default
+  bindings:
+    - { accept: Shift_L, toggle: ascii_mode, when: always }
+    - { accept: Shift_R, toggle: ascii_mode, when: always }
 
 recognizer:
   import_preset: default

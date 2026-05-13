@@ -4,7 +4,7 @@
 # 来源: 
 #  - 五笔小筑: https://github.com/yanhuacuo/98wubi
 ---
-name: wubi98_base
+name: wubi98
 version: "24.05.01"
 sort: by_weight
 columns:

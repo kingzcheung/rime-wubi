@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 schema:
-  schema_id: wubi86_jidian_trad_pinyin
+  schema_id: wubi86_trad_pinyin
   name: "拼音混输繁体"
   version: "1.0"
   author:

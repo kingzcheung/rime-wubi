@@ -1,5 +1,5 @@
 ---
-name: wubi86_jidian_user
+name: wubi86_user
 version: "2019-01-20"
 last_edit_time: "2021-08-07"
 dict_grouped: true # 词库管理应用识别：标记该码表为分组模式

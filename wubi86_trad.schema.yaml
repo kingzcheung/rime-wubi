@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 schema:
-  schema_id: wubi86_jidian_trad
+  schema_id: wubi86_trad
   name: "简入繁出"
   version: "1.0"
   author:

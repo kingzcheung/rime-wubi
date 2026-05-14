@@ -57,7 +57,7 @@ speller:
   auto_clear: max_length                # 空码时自动清空
 
 translator:
-  dictionary: wubi86_jidian             # 翻译器将调取此字典文件
+  dictionary: wubi86             # 翻译器将调取此字典文件
   enable_charset_filter: true           # 开启字符集过滤
   enable_completion: true               # 是否显示编码未输入完整的词条
   enable_sentence: false                # 句子输入模式

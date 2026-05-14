@@ -1,10 +1,10 @@
 ---
-name: wubi86_jidian
+name: wubi86
 version: "4.3"
 sort: by_weight # by_weight=权重 original=原始
 import_tables: # 此处是添加用户自定义词库的地方
-  - wubi86_jidian_user                # 个人私有词库
-  - wubi86_jidian_extra               # 扩展词库
+  - wubi86_user                # 个人私有词库
+  - wubi86_extra               # 扩展词库
 
 
 columns:    # 码表格式

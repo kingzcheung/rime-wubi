@@ -8,11 +8,11 @@
 
 patch:
   schema_list:
-    - schema: wubi86_jidian
+    - schema: wubi86
     - schema: numbers
-    - schema: wubi86_jidian_pinyin
-    - schema: wubi86_jidian_trad
-    - schema: wubi86_jidian_trad_pinyin
+    - schema: wubi86_pinyin
+    - schema: wubi86_trad
+    - schema: wubi86_trad_pinyin
     - schema: pinyin_simp
 
   # Menu

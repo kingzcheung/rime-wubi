@@ -17,6 +17,7 @@
 schema:
   schema_id: numbers
   name: 大写数字
+  author: Rime Developers
   version: "1.2"
   description: 快捷输入大写数字
 

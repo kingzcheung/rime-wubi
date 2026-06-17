@@ -47,7 +47,8 @@ engine:
     - reverse_lookup_translator
     - table_translator
     - lua_translator@date_translator # 自定义系统变量输出
-    - lua_translator@calculator # 计算器：二元运算，coco 开头，如 coco56*34 coco24/1024
+    - lua_translator@*uuid # 生成 uuid，输入 *uuid 即可
+    - lua_translator@*date_translator    # 时间、日期、星期
   filters:
     - simplifier@tradition
     # - lua_filter@single_char_first_filter # 单字优先方法

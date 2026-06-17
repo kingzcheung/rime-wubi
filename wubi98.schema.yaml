@@ -11,9 +11,9 @@ schema:
 switches:
   - name: ascii_mode
     reset: 0
-    states: [ 中文, 英文 ]
+    states: [中文, 英文]
   - name: full_shape
-    states: [ 半角, 全角 ]
+    states: [半角, 全角]
     reset: 0
 
 engine:
@@ -35,6 +35,8 @@ engine:
   translators:
     - punct_translator
     - table_translator
+    - lua_translator@*uuid # 生成 uuid，输入 *uuid 即可
+    - lua_translator@*date_translator # 时间、日期、星期
   filters:
     - uniquifier
 

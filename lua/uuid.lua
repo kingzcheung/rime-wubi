@@ -1,4 +1,4 @@
-smart_suggestionlocal function yield_cand(seg, text)
+local function yield_cand(seg, text)
 	local cand = Candidate("", seg.start, seg._end, text, "")
 	cand.quality = 100
 	yield(cand)

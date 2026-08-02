@@ -9,7 +9,6 @@
 patch:
   schema_list:
     - schema: wubi86
-    - schema: numbers
     - schema: wubi86_pinyin
     - schema: wubi86_trad
     - schema: wubi86_trad_pinyin

@@ -4,8 +4,8 @@
 config_version: "0.36"
 
 schema_list:
-  - schema: wubi86
   - schema: wubi86_pinyin
+  - schema: wubi86
   - schema: pinyin_simp
 
 switcher:

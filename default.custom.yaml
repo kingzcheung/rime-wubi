@@ -8,8 +8,8 @@
 
 patch:
   schema_list:
-    - schema: wubi86
     - schema: wubi86_pinyin
+    - schema: wubi86
     - schema: wubi86_trad
     - schema: wubi86_trad_pinyin
     - schema: pinyin_simp

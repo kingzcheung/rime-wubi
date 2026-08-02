@@ -3,6 +3,8 @@ name: wubi86
 version: "4.3"
 sort: original
 use_preset_vocabulary: false
+import_tables:
+  - wubi86_extra
 ...
 工	a
 戈	a

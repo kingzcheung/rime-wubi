@@ -3,7 +3,7 @@
 
 schema:
   schema_id: pinyin_simp
-  name: '简体拼音'
+  name: 简体拼音
   version: "0.8"
   author:
     - 佚名
@@ -19,6 +19,7 @@ switches:
   - name: full_shape
     states: [ 半角, 全角 ]
   - name: ascii_punct
+    reset: 0
     states: [ 。，, ．， ]
 
 engine:
@@ -41,6 +42,7 @@ engine:
     - punct_translator
     - script_translator
     - reverse_lookup_translator
+    - lua_translator@*uuid
 
 speller:
   alphabet: zyxwvutsrqponmlkjihgfedcba
@@ -61,6 +63,8 @@ speller:
 
 translator:
   dictionary: pinyin_simp
+  packs:
+    - user_simp
   preedit_format:
     - xform/([nl])v/$1ü/
     - xform/([nl])ue/$1üe/
@@ -75,8 +79,12 @@ reverse_lookup:
   preedit_format:
     - xlit/hspnz/一丨丿丶乙/
 
+menu:
+  page_size: 20
+
 punctuator:
   import_preset: default
+  __include: symbols:/punctuator
 
 key_binder:
   import_preset: default

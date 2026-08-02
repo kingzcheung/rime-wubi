@@ -1,14 +1,16 @@
-# Rime schema settings
+# Rime schema
 # encoding: utf-8
-
+# 下面的一些配置除了schema之外，其他的都是无用配置，只是为了让程序识别
 schema:
-  schema_id: wubi86
-  name: "五笔86"
+  schema_id: handwriting
+  name: 手写输入
   version: "1.0"
   author:
-    - 创始人 王永民先生
+    - Xime
   description: |
-    五笔字形 86 版
+    手写汉字识别输入
+  dependencies:
+    - wubi86
 
 switches:
   - name: ascii_mode
@@ -22,7 +24,6 @@ engine:
     - ascii_composer
     - recognizer
     - key_binder
-    - speller
     - punctuator
     - selector
     - navigator
@@ -36,39 +37,29 @@ engine:
   translators:
     - punct_translator
     - table_translator
-    - lua_translator@*uuid
   filters:
     - uniquifier
 
 speller:
-  alphabet: "abcdefghijklmnopqrstuvwxyz"
+  alphabet: zyxwvutsrqponmlkjihgfedcba
   delimiter: " '"
-  max_code_length: 4
-  auto_select: true
-  auto_select_unique_candidate: true
 
 translator:
-  dictionary:  wubi86
-  prism: wubi86
-  enable_charset_filter: true
-  enable_completion: true
+  dictionary: wubi86
+  enable_user_dict: false
   enable_sentence: false
-  enable_user_dict: true
-  enable_encoder: true
-  encode_commit_history: true
+  enable_completion: false
+  enable_encoder: false
+  encode_commit_history: false
 
 punctuator:
   import_preset: default
-  __include: symbols:/punctuator
 
 key_binder:
   import_preset: default
-  bindings:
-    - { when: has_menu, accept: space, send: 1 }
-    - { when: composing, accept: space, send: 1 }
 
 recognizer:
   import_preset: default
 
 menu:
-  page_size: 20
+  page_size: 5

@@ -3,25 +3,23 @@
 
 schema:
   schema_id: wubi86_pinyin
-  name: "拼音混输"
+  name: "五笔拼音"
   version: "0.9"
   author:
     - 发明人 王永民先生
   description: |
-    五笔字形 86 极点极爽版，方案由 KyleBing 修改 - 2019年11月08日 10:26
+    五笔拼音依赖于简体拼音方案，因此不能删除拼音方案!
   dependencies:
     - pinyin_simp
 
 switches:
-  - name: ascii_mode
-    reset: 0
-    states: [中文, 英文]
   - name: full_shape
-    states: [半角, 全角]
+    states: [ 半角, 全角 ]
   - name: extended_charset
-    states: [常用, 扩展]
+    states: [ 常用, 扩展 ]
   - name: ascii_punct
-    states: [。，, ．，]
+    reset: 0
+    states: [ 。，, ．， ]
 
 engine:
   processors:
@@ -43,26 +41,26 @@ engine:
     - punct_translator
     - reverse_lookup_translator
     - table_translator
-    - lua_translator@*uuid # 生成 uuid，输入 *uuid 即可
-    - lua_translator@*date_translator    # 时间、日期、星期
+    - lua_translator@*uuid
 
 speller:
+  alphabet: "abcdefghijklmnopqrstuvwxyz"
+  delimiter: " '"
+  auto_select: false
+  auto_select_unique_candidate: false
 
 translator:
-  dictionary: wubi86 # 翻译器将调取此字典文件
-  enable_charset_filter: true # 开启字符集过滤
-  enable_completion: true # 提前显示编码未输入完整的词条
-
-  # 开启自动造词相关设置，将下面四项都改为 true
-  enable_sentence: false # 句子输入模式
-  enable_user_dict: false # 是否开启用户词典（用户词典记录动态字词频，用户词）
-  enable_encoder: true # 自动造词
-  encode_commit_history: false # 是否对已上屏的词自动造词
-
-  max_phrase_length: 10 # 自动生成词的最大长度
-  user_dict: user # 用户词典名
-  db_class: tabledb # 用户词典类型 userdb - 二进制 / tabledb - 人类语言
-  disable_user_dict_for_patterns: # 不需要录入用户词典的编码
+  dictionary: wubi86
+  enable_charset_filter: true
+  enable_completion: true
+  enable_sentence: false
+  enable_user_dict: false
+  enable_encoder: true
+  encode_commit_history: false
+  max_phrase_length: 10
+  user_dict: user
+  db_class: tabledb
+  disable_user_dict_for_patterns:
     - "^z.*$"
 
 # 输入的编码同时进行拼音反查，实现五笔与拼音的混输
@@ -72,19 +70,23 @@ abc_segmentor:
 
 reverse_lookup:
   dictionary: pinyin_simp
+  # overwrite_comment: false
+  tips: "〔拼音〕"
   preedit_format:
     - xform/([nl])v/$1ü/
     - xform/([nl])ue/$1üe/
     - xform/([jqxy])v/$1u/
 
+
 punctuator:
   import_preset: default
+  __include: symbols:/punctuator
 
 key_binder:
   import_preset: default
-  bindings:
-    - { accept: Shift_L, toggle: ascii_mode, when: always }
-    - { accept: Shift_R, toggle: ascii_mode, when: always }
 
 recognizer:
   import_preset: default
+
+menu:
+  page_size: 20

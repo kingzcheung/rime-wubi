@@ -34,7 +34,12 @@ local M = {}
 
 function M.init(env)
 	randomseed(math.floor(os.time() + os.clock() * 1000))
-	M.uuid = env.engine.schema.config:get_string(env.name_space:gsub("^*", "")) or "uuid"
+	local schema = env.engine.schema
+	if schema and schema.config then
+		M.uuid = schema.config:get_string(env.name_space:gsub("^*", "")) or "uuid"
+	else
+		M.uuid = "uuid"
+	end
 end
 
 function M.func(input, seg, _)

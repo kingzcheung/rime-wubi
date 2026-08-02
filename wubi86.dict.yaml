@@ -1,27 +1,8 @@
 ---
 name: wubi86
 version: "4.3"
-sort: by_weight # by_weight=权重 original=原始
-import_tables: # 此处是添加用户自定义词库的地方
-  - wubi86_user                # 个人私有词库
-  - wubi86_extra               # 扩展词库
-
-
-columns:    # 码表格式
-  - text    # 文字
-  - code    # 输入码
-  - weight  # 权重
-  - stem
-encoder:
-  exclude_patterns:
-    - '^z.*$'
-  rules:                        # 大写字母表示字序，小写字母表示其所跟随的大写字母所以表的字中的编码序
-    - length_equal: 2           # 对于二字词
-      formula: "AaAbBaBb"       # 取第一字首二码、第二字首二码
-    - length_equal: 3           # 对于三字词
-      formula: "AaBaCaCb"       # 取第一字首码、第二字首码、第三字首码、第三字二笔码
-    - length_in_range: [4, 10]  # 对于四至十字词
-      formula: "AaBaCaZa"       # 取第一字首码，第二字尾码、第三字首码、最后一字尾码
+sort: original
+use_preset_vocabulary: false
 ...
 工	a
 戈	a

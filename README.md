@@ -57,9 +57,8 @@ __Linux: Ubuntu__
 ├── wubi98.schema.yaml                      # 输入方案 - 五笔98
 ├── wubi98.dict.yaml                        # 词库文件 - 五笔98码表
 ├── handwriting.schema.yaml                 # 输入方案 - 手写输入
-├── t9_pinyin.schema.yaml                   # 输入方案 - 拼音九键
+├── t9_pinyin.schema.yaml                   # 输入方案 - 拼音九键（依赖 librime-t9 插件）
 ├── lua/
-│   ├── date_hint.lua                       # 脚本 - 九键日期提示
 │   └── uuid.lua                            # 脚本 - 输出 UUID
 └── macOS-双击复制文件内容.command           # 脚本 - macOS 一键复制配置到 Rime 目录
 ```
@@ -202,7 +201,8 @@ Xime 输入法（仓库地址：[https://github.com/ximeiorg/Xime](https://githu
 ### 5. Lua 脚本扩展
 本项目将 Lua 脚本统一放在 `lua/` 目录，并在对应的 `*.schema.yaml` 中引用：
 - `uuid.lua`：输入触发词可输出 UUID，在 `wubi86.schema.yaml` 的 `engine/translators` 中以 `lua_translator@*uuid` 引用。
-- `date_hint.lua`：九键拼音下输入「今天/明天/昨天」等触发词时在候选词中插入日期，在 `t9_pinyin.schema.yaml` 的 `engine/filters` 中以 `lua_filter@*date_hint` 引用。
+
+> 注：九键方案（`t9_pinyin.schema.yaml`）的日期提示不再使用 Lua 脚本，改由 librime-t9 插件的 `t9_date_translator`（C++）提供，`lua/date_hint.lua` 已移除。支持 `rq/sj/xq/dt/ts/nl` 系统触发词（如 `77`→rq、`75`→sj，对应日期/时间/星期/日期时间/时间戳/农历）与「今天/今日/明天/明日/昨天/昨日」中文触发词（如 `518`（j't 简拼）或 `5468426`（jintian 全拼），输出「今天(1月15日)」形式的复合日期候选），并内置公历转农历（覆盖 1899–2100 年）；数字 preedit 的拼音显示由 `t9_filter` 完成。该方案需 librime-t9 插件支持（如 Xime 输入法内置）。
 
 ### 6. 开启自动造词
 

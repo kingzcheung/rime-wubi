@@ -3,7 +3,28 @@
 # T9 拼音九键（与 pinyin_simp 共享字典）
 # 参考雾凇拼音方案：数字序列直接由 RIME speller algebra 展开，
 # 引擎原生处理数字→拼音转换和多音节歧义消解。
-# 左侧候选区由 Kotlin T9PinyinMap 计算展示。
+# 左侧候选区由 T9PinyinMap librime-t9 计算展示。
+t9:
+  # 适应元书输入法的配置，是否显示 rime 中原始的预编辑文本，默认为 true
+  # true: 对 preedit 不做处理，显示 rime 返回的原始 preedit 值。
+  #       如果想通过 lua 自己调整 preedit 的显示，可以设置为 true。
+  # false: 根据候选字 comment 显示转换后的 preedit 内容。
+  #        注意：请务必保证候选字 comment 有效且正确，否则可能导致预编辑文本显示异常。
+  isDisplayOriginalPreedit: false
+
+  # 日期翻译器开关（true=开启，false=关闭） 参考白霜实现，感谢白霜方案
+  enable_date_translator: true
+
+  # 日期翻译器触发词配置 参考白霜实现，感谢白霜方案
+  date_translator:
+    date: rq
+    time: sj
+    week: xq
+    datetime: dt
+    timestamp: ts
+    lunar: nl
+    # 候选插入位置（默认 2，即第二位）
+    idx: 2
 
 schema:
   schema_id: t9_pinyin
@@ -41,10 +62,11 @@ engine:
     - punct_segmentor
     - fallback_segmentor
   translators:
+    - t9_date_translator
     - punct_translator
     - script_translator
   filters:
-    - lua_filter@*date_hint
+    - t9_filter
     - uniquifier
 
 speller:
@@ -95,3 +117,7 @@ recognizer:
 key_binder:
   bindings:
     - { when: has_menu, accept: 1, send: apostrophe }
+
+editor:
+  bindings:
+    space: confirm

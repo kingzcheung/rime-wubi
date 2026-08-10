@@ -71,4 +71,4 @@ recognizer:
   import_preset: default
 
 menu:
-  page_size: 20
+  page_size: 5

@@ -1,10 +1,20 @@
 ---
 name: wubi86
 version: "4.3"
-sort: original
+sort: by_weight
 use_preset_vocabulary: false
 import_tables:
   - wubi86_extra
+encoder:
+  exclude_patterns:
+    - '^z.*$'
+  rules:
+    - length_equal: 2
+      formula: "AaAbBaBb"
+    - length_equal: 3
+      formula: "AaBaCaCb"
+    - length_in_range: [4, 32]
+      formula: "AaBaCaZa"
 ...
 工	a
 戈	a

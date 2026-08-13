@@ -15,6 +15,11 @@ t9:
   # 日期翻译器开关（true=开启，false=关闭） 参考白霜实现，感谢白霜方案
   enable_date_translator: true
 
+  # 超越输入序列长度，借助简拼匹配长词召回开关（true=开启，false=关闭）
+  # 通过补丁注入 derive 简拼，让"几乎把/几乎从"等简拼长词能被 RIME 原生召回。
+  # 默认开启；关闭后简拼匹配长词不召回（仅完整拼音词、单字）。
+  enable_abbrev_recall: true
+
   # 日期翻译器触发词配置 参考白霜实现，感谢白霜方案
   date_translator:
     date: rq

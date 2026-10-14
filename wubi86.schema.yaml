@@ -56,6 +56,9 @@ translator:
   enable_user_dict: true
   enable_encoder: true
   encode_commit_history: true
+  # 单键一级简码（如 s→要）不受学习型用户词典影响，避免被选中过的其它字顶掉
+  disable_user_dict_for_patterns:
+    - "^[a-z]$"
 
 punctuator:
   import_preset: default

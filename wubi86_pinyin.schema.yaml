@@ -60,6 +60,7 @@ translator:
   max_phrase_length: 10
   disable_user_dict_for_patterns:
     - "^z.*$"
+    - "^[a-z]$"   # 单键一级简码（如 s→要）不受学习型用户词典影响
 
 # 输入的编码同时进行拼音反查，实现五笔与拼音的混输
 abc_segmentor:

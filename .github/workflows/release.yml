@@ -1,0 +1,74 @@
+name: Release Package
+
+# 发布 Release 时，把仓库里的 Rime 配置打包成 zip 并上传到该 Release。
+# GitHub 会为上传后的 zip 资源展示 SHA-256 摘要，同时额外生成 .sha256 文件方便校验。
+on:
+  release:
+    types: [published]
+  # 支持手动重新打包（例如 Release 已存在，但资源上传失败时补传）
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: '要打包并上传的 Release 标签，例如 v1.0.0'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-package-${{ github.event.release.tag_name || github.event.inputs.tag }}
+  cancel-in-progress: false
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    env:
+      TAG: ${{ github.event.release.tag_name || github.event.inputs.tag }}
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.tag_name || github.event.inputs.tag }}
+          fetch-depth: 0
+
+      - name: 打包配置并生成 SHA-256
+        run: |
+          set -euo pipefail
+
+          if [ -z "${TAG}" ]; then
+            echo "::error::未获取到 Release 标签"
+            exit 1
+          fi
+
+          NAME="rime-wubi-${TAG}"
+          mkdir -p dist
+
+          # 复制需要分发的文件，排除版本控制、CI 配置和本地构建产物
+          rsync -a \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            --exclude='.gitignore' \
+            --exclude='.DS_Store' \
+            --exclude='build/' \
+            --exclude='dist/' \
+            ./ "dist/${NAME}/"
+
+          # 压缩包解压后会得到 rime-wubi-<tag>/ 目录，内容可直接复制到 Rime 用户目录
+          (cd dist && zip -rq "${NAME}.zip" "${NAME}")
+
+          (cd dist && sha256sum "${NAME}.zip" > "${NAME}.zip.sha256")
+
+          echo "打包完成："
+          ls -lh dist
+          cat "dist/${NAME}.zip.sha256"
+
+      - name: 上传到 Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.event.release.tag_name || github.event.inputs.tag }}
+          files: |
+            dist/*.zip
+            dist/*.sha256
+          fail_on_unmatched_files: true

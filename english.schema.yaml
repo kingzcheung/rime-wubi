@@ -16,6 +16,9 @@ switches:
   - name: ascii_mode
     reset: 1
     states: [ 候选, 直输 ]
+  - name: english_spacing
+    reset: 1
+    states: [ 空格关, 空格开 ]
   - name: ascii_punct
     reset: 1
     states: [ 。，, ．， ]
@@ -37,6 +40,8 @@ engine:
   translators:
     - table_translator
     - punct_translator
+  filters:
+    - lua_filter@*english_spacing
 
 translator:
   dictionary: english

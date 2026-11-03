@@ -7,6 +7,7 @@ schema_list:
   - schema: wubi86_pinyin
   - schema: wubi86
   - schema: pinyin_simp
+  - schema: english
 
 switcher:
   caption: "〔方案选单〕"

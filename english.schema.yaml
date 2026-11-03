@@ -1,0 +1,56 @@
+# Rime schema settings
+# encoding: utf-8
+#
+# 纯英文方案：默认直输（字母/标点直接上屏）；地球键切到「候选」时
+# 用 english.dict.yaml 出英文单词候选（table_translator）。
+# 选中本方案即进入英文键盘，并在新输入会话中保持。
+
+schema:
+  schema_id: english
+  name: "English"
+  version: "1.1"
+  description: |
+    纯英文输入：默认直输；切到候选模式后可按词库补全英文单词。
+
+switches:
+  - name: ascii_mode
+    reset: 1
+    states: [ 候选, 直输 ]
+  - name: ascii_punct
+    reset: 1
+    states: [ 。，, ．， ]
+
+engine:
+  processors:
+    - ascii_composer
+    - key_binder
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - ascii_segmentor
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - table_translator
+    - punct_translator
+
+translator:
+  dictionary: english
+  enable_completion: true
+  enable_sentence: false
+  enable_user_dict: false
+  initial_quality: 1
+
+speller:
+  alphabet: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  delimiter: " '"
+
+key_binder:
+  import_preset: default
+
+punctuator:
+  import_preset: default

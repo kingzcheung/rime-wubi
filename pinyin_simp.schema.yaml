@@ -60,8 +60,6 @@ speller:
 
 translator:
   dictionary: pinyin_simp
-  packs:
-    - user_simp
   preedit_format:
     - xform/([nl])v/$1ü/
     - xform/([nl])ue/$1üe/
